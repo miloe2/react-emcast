@@ -1,15 +1,20 @@
+import { useRef } from "react";
+import { CircularProgress } from "@mui/material";
 import PostItem from "./PostItem";
 import { useGetPosts } from "../hooks/queries/useGetPosts";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
-import { CircularProgress } from "@mui/material";
-import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PostList() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useGetPosts();
   const allPosts = data?.pages.flatMap((page) => page.posts) ?? [];
-
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const navigate = useNavigate();
+
+  const handleClickPost = (id: number) => {
+    navigate(`/posts/${id}`);
+  };
 
   const loadMoreRef = useIntersectionObserver({
     onIntersect: () => {
@@ -27,13 +32,20 @@ function PostList() {
   return (
     <>
       {allPosts?.map((post) => (
-        <PostItem key={post.id} post={post} />
+        <PostItem
+          key={post.id}
+          post={post}
+          onClick={() => {
+            console.log(post.id);
+            handleClickPost(post.id);
+          }}
+        />
       ))}
-      {/* <div ref={loadMoreRef} style={{ minHeight: 20, marginTop: 10 }}>
+      <div ref={loadMoreRef} style={{ minHeight: 20, marginTop: 10 }}>
         {!isFetchingNextPage && (
           <CircularProgress size={40} color="info" thickness={5} />
         )}
-      </div> */}
+      </div>
     </>
   );
 }

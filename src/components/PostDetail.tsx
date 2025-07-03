@@ -4,19 +4,18 @@ interface PostItemProps {
   post: Post;
   onClick: () => void;
 }
-function PostItem({ post, onClick }: PostItemProps) {
+function PostDetail() {
   return (
-    <Card onClick={onClick} sx={{ marginBottom: 5, cursor: "pointer" }}>
+    <Card  sx={{ marginBottom: 5, cursor: "pointer" }}>
       <CardContent>
         <Typography variant="h6" component="div" gutterBottom>
-          {post.title}
+          여기가 새로운거야!!!!!!!!!!
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {post.body}
         </Typography>
       </CardContent>
     </Card>
   );
 }
 
-export default PostItem;
+export default PostDetail;

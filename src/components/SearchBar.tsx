@@ -14,7 +14,7 @@ function SearchBar({ onSearch }: { onSearch: (q: string) => void }) {
       }}
       placeholder="검색어를 입력하세요"
       variant="outlined"
-      size="small" 
+      size="small"
       fullWidth
       sx={{
         backgroundColor: "#f9f9f9",
@@ -30,12 +30,12 @@ function SearchBar({ onSearch }: { onSearch: (q: string) => void }) {
       }}
       InputProps={{
         endAdornment: (
-          <InputAdornment position="end">
+          <InputAdornment position="end" sx={{ mr: 2 }}>
             <IconButton
               onClick={() => onSearch(keyword.trim())}
               edge="end"
               size="small"
-              sx={{ p: "10px" }}
+              sx={{ p: "5px" }}
             >
               <SearchIcon fontSize="small" />
             </IconButton>

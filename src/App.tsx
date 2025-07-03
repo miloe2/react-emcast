@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Container } from "@mui/material";
 import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "./api/queryClient";
@@ -7,9 +8,14 @@ import queryClient from "./api/queryClient";
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Container maxWidth="sm">
-        <Home />
-      </Container>
+      <BrowserRouter>
+        <Container maxWidth="sm">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* <Route path="/posts/:id" element={<PostDetail />} /> */}
+          </Routes>
+        </Container>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 }
