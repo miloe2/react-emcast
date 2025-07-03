@@ -29,11 +29,11 @@ function PostList() {
       {allPosts?.map((post) => (
         <PostItem key={post.id} post={post} />
       ))}
-      <div ref={loadMoreRef} style={{ minHeight: 20, marginTop: 10 }}>
+      {/* <div ref={loadMoreRef} style={{ minHeight: 20, marginTop: 10 }}>
         {!isFetchingNextPage && (
           <CircularProgress size={40} color="info" thickness={5} />
         )}
-      </div>
+      </div> */}
     </>
   );
 }
