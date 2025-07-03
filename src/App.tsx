@@ -7,7 +7,7 @@ import queryClient from "./api/queryClient";
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Container maxWidth="md">
+      <Container maxWidth="sm">
         <Home />
       </Container>
     </QueryClientProvider>

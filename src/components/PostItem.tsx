@@ -1,6 +1,5 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import type { Post } from "../types";
-// @ts-nocheck
 function PostItem({ post }: { post: Post }) {
   const { title, body } = post;
   return (
