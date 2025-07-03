@@ -1,16 +1,14 @@
 import { useGetPosts } from "../hooks/queries/useGetPosts";
+import PostItem from "./PostItem";
 
 function PostList() {
-  const { data: posts } = useGetPosts();
+  const { data } = useGetPosts();
+  const allPosts = data?.pages.flatMap((page) => page.posts) ?? [];
 
   return (
     <>
-      {posts?.pages.map((page, i) => (
-        <div key={i}>
-          {page.posts.map((item) => (
-            <div key={item.id}>{item.title}</div>
-          ))}
-        </div>
+      {allPosts?.map((post) => (
+        <PostItem key={post.id} post={post} />
       ))}
     </>
   );
