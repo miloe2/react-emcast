@@ -1,7 +1,9 @@
+import PostList from "../components/PostList";
+
 function Home() {
   return (
     <>
-    hihi
+      <PostList />
     </>
   );
 }
