@@ -2,7 +2,7 @@ import { getPostSearch } from '../../api/post';
 import { queryKeys } from '../../constants/index';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-function useGetPostSearch(keyword: string) {
+function useGetPostsSearch(keyword: string) {
   return useInfiniteQuery({
     queryKey: [queryKeys.POST, queryKeys.GET_POSTS, keyword],
     queryFn: ({ pageParam = 0 }) => getPostSearch({ skip: pageParam, keyword }),
@@ -14,4 +14,4 @@ function useGetPostSearch(keyword: string) {
     enabled: !!keyword,
   });
 }
-export { useGetPostSearch };
+export { useGetPostsSearch };

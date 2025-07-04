@@ -2,15 +2,17 @@ import { Box, Stack, Card, CardContent, Typography, Chip } from "@mui/material";
 import type { Post } from "../types";
 interface PostItemProps {
   post: Post;
-  onClick: () => void;
+  isDetail: boolean;
+  onClick?: () => void;
 }
-function PostItem({ post, onClick }: PostItemProps) {
+function PostItem({ post, isDetail = false, onClick }: PostItemProps) {
   return (
-    <Card
-      sx={{ mb: 2, transition: "0.3s", "&:hover": { boxShadow: 6 }, px: 2 }}
-    >
+    <Card sx={{ mb: 2, px: 2 }}>
       <CardContent>
-        <Box onClick={onClick} sx={{ cursor: "pointer" }}>
+        <Box
+          onClick={!isDetail ? onClick : undefined}
+          sx={!isDetail ? { cursor: "pointer" } : undefined}
+        >
           <Typography variant="h6" gutterBottom>
             {post.title}
           </Typography>
@@ -20,10 +22,14 @@ function PostItem({ post, onClick }: PostItemProps) {
             sx={{
               my: 2,
               textAlign: "left",
-              overflow: "hidden",
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
+              ...(isDetail
+                ? {}
+                : {
+                    overflow: "hidden",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                  }),
             }}
           >
             {post.body}

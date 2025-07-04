@@ -2,20 +2,20 @@ import { useRef } from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useNavigate } from 'react-router-dom';
-import { useGetPostSearch } from '../hooks/queries/useGetPostSearch';
+import { useGetPostsSearch } from '../hooks/queries/useGetPostsSearch';
 import PostList from './PostList';
 interface PostSearchResultProps {
   keyword: string;
 }
 
 function PostSearchResult({ keyword }: PostSearchResultProps) {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetPostSearch(keyword);
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetPostsSearch(keyword);
   const allPosts = data?.pages.flatMap((page) => page.posts) ?? [];
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
 
   const handleClickPost = (id: number) => {
-    navigate(`/post/${id}`);
+    navigate(`/posts/${id}`);
   };
 
   const loadMoreRef = useIntersectionObserver({

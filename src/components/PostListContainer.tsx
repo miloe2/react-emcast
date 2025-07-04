@@ -12,7 +12,7 @@ function PostListContainer() {
   const navigate = useNavigate();
 
   const handleClickPost = (id: number) => {
-    navigate(`/post/${id}`);
+    navigate(`/posts/${id}`);
   };
 
   const loadMoreRef = useIntersectionObserver({
