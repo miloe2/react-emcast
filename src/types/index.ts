@@ -18,4 +18,26 @@ interface PostsResponse {
   limit: number;
 }
 
-export type { Post, PostsResponse };
+interface User {
+  id: number;
+  username: string;
+  fullName: string;
+}
+
+interface Comments {
+  id: number;
+  body: string;
+  postId: number;
+  likes: number;
+  user: User;
+}
+
+
+interface CommentsResponse {
+  comments: Comments[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
+export type { Post, PostsResponse, Comments, CommentsResponse };

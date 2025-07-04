@@ -2,7 +2,7 @@ import { Box, Stack, Card, CardContent, Typography, Chip } from "@mui/material";
 import type { Post } from "../types";
 interface PostItemProps {
   post: Post;
-  isDetail: boolean;
+  isDetail?: boolean;
   onClick?: () => void;
 }
 function PostItem({ post, isDetail = false, onClick }: PostItemProps) {
