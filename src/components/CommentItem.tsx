@@ -1,4 +1,5 @@
-import { Box, Typography, Stack } from "@mui/material";
+import { Box, Typography, Divider, Stack } from "@mui/material";
+
 import type { Comments } from "../types";
 
 interface CommentItemProps {
@@ -7,25 +8,29 @@ interface CommentItemProps {
 
 export default function CommentItem({ comment }: CommentItemProps) {
   return (
-    <Box
-      sx={{
-        border: "1px solid #ddd",
-        borderRadius: 2,
-        p: 2,
-        mb: 2,
-      }}
-    >
-      <Stack spacing={0.5}>
-        <Typography variant="subtitle2">
-          {comment.user.fullName} (@{comment.user.username})
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {comment.body}
-        </Typography>
-        <Typography variant="caption" color="text.secondary">
-          ❤️ {comment.likes}
-        </Typography>
-      </Stack>
-    </Box>
+    <>
+      <Box sx={{ mb: 1.5, textAlign: "left" }}>
+        <Stack direction="row" spacing={2} sx={{ mb: 1.5 }}>
+          <Box sx={{ minWidth: "15%" }}>
+            <Typography
+              variant="subtitle2"
+              sx={{ fontWeight: "bold", color: "primary.main" }}
+            >
+              {comment.user.username}
+            </Typography>
+          </Box>
+
+          <Box>
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              {comment.body}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              ❤️ {comment.likes}
+            </Typography>
+          </Box>
+        </Stack>
+        <Divider sx={{ mb: 2 }} />
+      </Box>
+    </>
   );
 }
