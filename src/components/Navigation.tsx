@@ -1,7 +1,9 @@
-import { AppBar, Toolbar, Box, Container } from '@mui/material';
+import { AppBar, Toolbar, Box, Container, IconButton, Button } from '@mui/material';
 import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router-dom';
-
+import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
 const glassStyle = {
   backdropFilter: 'blur(12px)',
   WebkitBackdropFilter: 'blur(12px)', // Safari 지원
@@ -22,7 +24,15 @@ export default function Navigation() {
     <AppBar position="fixed" color="default" elevation={1} style={glassStyle}>
       <Container maxWidth="sm" sx={{ backgroundColor: '' }}>
         <Toolbar disableGutters sx={{ py: 1 }}>
-          <Box sx={{ width: '100%' }}>
+          <Box>
+            <Button sx={{ minWidth: 40, mr: 2 }} onClick={() => navigate('/')}>
+              <HomeIcon />
+            </Button>
+            <Button sx={{ minWidth: 40, mr: 2 }} onClick={() => navigate('/login')}>
+              <PersonIcon />
+            </Button>
+          </Box>
+          <Box sx={{ flexGrow: 1 }}>
             <SearchBar onSearch={(q) => handleSearch(q)} />
           </Box>
         </Toolbar>
