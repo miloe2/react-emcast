@@ -1,6 +1,5 @@
 import { useRef } from 'react';
-import { CircularProgress } from '@mui/material';
-import PostItem from './PostItem';
+import { Box, CircularProgress } from '@mui/material';
 import PostList from './PostList';
 import { useGetPosts } from '../hooks/queries/useGetPosts';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
@@ -32,19 +31,14 @@ function PostListContainer() {
   return (
     <>
       <PostList posts={allPosts} onClick={handleClickPost} />
-      {/* {allPosts?.map((post) => (
-        <PostItem
-          key={post.id}
-          post={post}
-          onClick={() => {
-            console.log(post.id);
-            handleClickPost(post.id);
-          }}
-        />
-      ))} */}
-      <div ref={loadMoreRef} style={{ minHeight: 20, marginTop: 10 }}>
-        {!isFetchingNextPage && <CircularProgress size={40} color="info" thickness={5} />}
-      </div>
+
+      <Box ref={loadMoreRef} sx={{ minHeight: 100, marginTop: 10 }}>
+        {hasNextPage ? (
+          <CircularProgress size={40} color="info" thickness={5} />
+        ) : (
+          <p style={{ textAlign: 'center', color: '#888' }}>더 이상 게시물이 없습니다.</p>
+        )}
+      </Box>
     </>
   );
 }
