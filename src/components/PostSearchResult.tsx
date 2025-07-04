@@ -15,7 +15,7 @@ function PostSearchResult({ keyword }: PostSearchResultProps) {
   const navigate = useNavigate();
 
   const handleClickPost = (id: number) => {
-    navigate(`/posts/${id}`);
+    navigate(`/post/${id}`);
   };
 
   const loadMoreRef = useIntersectionObserver({
