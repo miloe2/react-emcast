@@ -1,15 +1,16 @@
-import { useRef } from 'react';
-import { Box, CircularProgress } from '@mui/material';
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { useNavigate } from 'react-router-dom';
-import { useGetPostsSearch } from '../hooks/queries/useGetPostsSearch';
-import PostList from './PostList';
+import { useRef } from "react";
+import { Box, CircularProgress } from "@mui/material";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import { useNavigate } from "react-router-dom";
+import { useGetPostsSearch } from "../hooks/queries/useGetPostsSearch";
+import PostList from "./PostList";
 interface PostSearchResultProps {
   keyword: string;
 }
 
-function PostSearchResult({ keyword }: PostSearchResultProps) {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetPostsSearch(keyword);
+export default function PostSearchResult({ keyword }: PostSearchResultProps) {
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useGetPostsSearch(keyword);
   const allPosts = data?.pages.flatMap((page) => page.posts) ?? [];
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
@@ -38,10 +39,11 @@ function PostSearchResult({ keyword }: PostSearchResultProps) {
         {hasNextPage ? (
           <CircularProgress size={40} color="info" thickness={5} />
         ) : (
-          <p style={{ textAlign: 'center', color: '#888' }}>더 이상 게시물이 없습니다.</p>
+          <p style={{ textAlign: "center", color: "#888" }}>
+            더 이상 게시물이 없습니다.
+          </p>
         )}
       </Box>
     </>
   );
 }
-export default PostSearchResult;

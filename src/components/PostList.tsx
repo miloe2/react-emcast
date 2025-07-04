@@ -1,7 +1,7 @@
 import PostItem from "./PostItem";
 import type { Post } from "../types";
 
-function PostList({
+export default function PostList({
   posts,
   onClick,
 }: {
@@ -21,4 +21,3 @@ function PostList({
   );
 }
 
-export default PostList;

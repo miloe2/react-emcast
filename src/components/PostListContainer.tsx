@@ -1,12 +1,13 @@
-import { useRef } from 'react';
-import { Box, CircularProgress } from '@mui/material';
-import PostList from './PostList';
-import { useGetPosts } from '../hooks/queries/useGetPosts';
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { useNavigate } from 'react-router-dom';
+import { useRef } from "react";
+import { Box, CircularProgress } from "@mui/material";
+import PostList from "./PostList";
+import { useGetPosts } from "../hooks/queries/useGetPosts";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import { useNavigate } from "react-router-dom";
 
-function PostListContainer() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetPosts();
+export default function PostListContainer() {
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useGetPosts();
   const allPosts = data?.pages.flatMap((page) => page.posts) ?? [];
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
@@ -36,11 +37,11 @@ function PostListContainer() {
         {hasNextPage ? (
           <CircularProgress size={40} color="info" thickness={5} />
         ) : (
-          <p style={{ textAlign: 'center', color: '#888' }}>더 이상 게시물이 없습니다.</p>
+          <p style={{ textAlign: "center", color: "#888" }}>
+            더 이상 게시물이 없습니다.
+          </p>
         )}
       </Box>
     </>
   );
 }
-
-export default PostListContainer;

@@ -5,6 +5,7 @@ import { Container } from "@mui/material";
 import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "./api/queryClient";
 import PostDetail from "./pages/PostDetail";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Container maxWidth="sm">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/posts/:id" element={<PostDetail />} />
           </Routes>
         </Container>

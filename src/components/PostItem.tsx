@@ -5,7 +5,11 @@ interface PostItemProps {
   isDetail?: boolean;
   onClick?: () => void;
 }
-function PostItem({ post, isDetail = false, onClick }: PostItemProps) {
+export default function PostItem({
+  post,
+  isDetail = false,
+  onClick,
+}: PostItemProps) {
   return (
     <Card sx={{ mb: 2, px: 2 }}>
       <CardContent>
@@ -76,5 +80,3 @@ function PostItem({ post, isDetail = false, onClick }: PostItemProps) {
     </Card>
   );
 }
-
-export default PostItem;
