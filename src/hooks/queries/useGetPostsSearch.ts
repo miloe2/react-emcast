@@ -1,4 +1,4 @@
-import { getPostSearch } from '../../api/post';
+import { getPostSearch } from '../../api/posts';
 import { queryKeys } from '../../constants/index';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
