@@ -6,7 +6,7 @@ function useGetPost(id: number) {
   return useQuery({
     queryKey: [queryKeys.POST, id],
     queryFn: () => getPostDetail(id),
-    enabled: Boolean(id),
+    enabled: id !== null,
   });
 }
 export { useGetPost };

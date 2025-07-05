@@ -1,16 +1,19 @@
 import { Typography, Stack, Button } from "@mui/material";
 import CustomInput from "./CustomInput";
+import { useNavigate } from "react-router-dom";
 interface SignInModalProps {
   onClose: () => void;
 }
 
 export default function SignInModal({ onClose }: SignInModalProps) {
+  const navigate = useNavigate();
   const handleSignIn = () => {
     console.log("handleSignIn");
   };
   const handleSignUp = () => {
-    console.log("handleSignUp");
     onClose();
+    console.log("handleSignUp");
+    navigate("/signup");
   };
   return (
     <>
