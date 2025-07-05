@@ -9,8 +9,8 @@ export default function Signup() {
     console.log("handleCancel");
     navigate(-1);
   };
-  const handleSignUp = () => {
-    console.log("handleSignUp");
+  const handleConfirm = () => {
+    console.log("handleConfirm");
     // navigate("/signup");
   };
   return (
@@ -41,8 +41,8 @@ export default function Signup() {
           <Button variant="outlined" fullWidth onClick={handleCancel}>
             Cancel
           </Button>
-          <Button variant="contained" fullWidth onClick={handleSignUp}>
-            Sign Up
+          <Button variant="contained" fullWidth onClick={handleConfirm}>
+            Confirm
           </Button>
         </Stack>
       </Box>

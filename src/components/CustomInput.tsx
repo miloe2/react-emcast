@@ -1,12 +1,25 @@
 import { TextField, Box } from "@mui/material";
+import type { TextFieldProps } from "@mui/material";
+import type { UseFormRegisterReturn } from "react-hook-form";
 
-interface CustomInputProps {
+type CustomInputProps = TextFieldProps & {
   label: string;
-}
-export default function CustomInput({ label }: CustomInputProps) {
+  register?: UseFormRegisterReturn;
+};
+
+export default function CustomInput({
+  label,
+  register,
+  ...props
+}: CustomInputProps) {
   return (
     <Box sx={{ mt: 2 }}>
-      <TextField label={label} fullWidth />
+      <TextField
+        label={label}
+        fullWidth
+        {...register}
+        {...props}
+      />
     </Box>
   );
 }
