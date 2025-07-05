@@ -3,6 +3,9 @@ import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
+import MyDialog from "./MyDialog";
+import { useState } from "react";
+
 const glassStyle = {
   backdropFilter: "blur(12px)",
   WebkitBackdropFilter: "blur(12px)", // Safari 지원
@@ -14,6 +17,10 @@ const glassStyle = {
 
 export default function Navigation() {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const handleLogin = () => {
+    setOpen(true);
+  };
 
   const handleSearch = (q: string) => {
     navigate(`/?search=${encodeURIComponent(q)}`);
@@ -27,12 +34,15 @@ export default function Navigation() {
             <Button sx={{ minWidth: 40, mr: 2 }} onClick={() => navigate("/")}>
               <HomeIcon />
             </Button>
-            <Button
-              sx={{ minWidth: 40, mr: 2 }}
-              onClick={() => navigate("/login")}
-            >
+            <Button sx={{ minWidth: 40, mr: 2 }} onClick={handleLogin}>
               <PersonIcon />
             </Button>
+            <MyDialog
+              open={open}
+              onClose={() => {
+                setOpen(false);
+              }}
+            />
           </Box>
           <Box sx={{ flexGrow: 1 }}>
             <SearchBar onSearch={(q) => handleSearch(q)} />
