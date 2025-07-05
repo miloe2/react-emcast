@@ -1,4 +1,15 @@
-import { Box, Stack, Button, Typography, Container } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Button,
+  Typography,
+  Container,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from "@mui/material";
 
 import CustomInput from "../components/CustomInput";
 import { useNavigate } from "react-router-dom";
@@ -36,8 +47,46 @@ export default function Signup() {
           <CustomInput label="ID" />
           <CustomInput label="Password" />
           <CustomInput label="Password Confirm" />
+          <FormControl>
+            <FormLabel id="demo-row-radio-buttons-group-label">ROLE</FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+              defaultValue="admin"
+            >
+              <FormControlLabel
+                value="admin"
+                control={<Radio size="small" />}
+                label="ADMIN"
+                sx={{
+                  "& .MuiFormControlLabel-label": { fontSize: "0.8rem" },
+                  mr: 2,
+                }}
+              />
+              <FormControlLabel
+                value="member"
+                control={<Radio size="small" />}
+                label="MEMBER"
+                sx={{
+                  "& .MuiFormControlLabel-label": { fontSize: "0.8rem" },
+                  mr: 2,
+                }}
+              />
+              <FormControlLabel
+                value="guest"
+                control={<Radio size="small" />}
+                label="GUEST"
+                sx={{
+                  "& .MuiFormControlLabel-label": { fontSize: "0.8rem" },
+                  mr: 2,
+                }}
+              />
+            </RadioGroup>
+          </FormControl>
         </Stack>
-        <Stack direction={"row"} spacing={1} sx={{ mt: 4 }}>
+
+        <Stack direction={"row"} spacing={1} sx={{ mt: 6 }}>
           <Button variant="outlined" fullWidth onClick={handleCancel}>
             Cancel
           </Button>
