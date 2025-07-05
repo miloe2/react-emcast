@@ -6,6 +6,7 @@ import { Container } from "@mui/material";
 import Home from "./pages/Home";
 import queryClient from "./api/queryClient";
 import PostDetail from "./pages/PostDetail";
+import PostWrite from "./pages/PostWrite";
 import Signup from "./pages/Signup";
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/posts/:id" element={<PostDetail />} />
+            <Route path="/posts/write" element={<PostWrite />} />
           </Routes>
         </Container>
       </BrowserRouter>

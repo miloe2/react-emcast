@@ -92,7 +92,9 @@ export default function Signup() {
 
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label">
-                ROLE
+                <Typography variant="body2" color="primary">
+                  ROLE
+                </Typography>
               </FormLabel>
               <RadioGroup
                 row

@@ -50,7 +50,7 @@ export function MoreMenu({ onDelete }: MoreMenuProps) {
             onDelete();
           }}
         >
-          삭제
+          Delete
         </MenuItem>
       </Menu>
     </>

@@ -16,7 +16,7 @@ export default function SearchBar({
       onKeyDown={(e) => {
         if (e.key === "Enter") onSearch(keyword.trim());
       }}
-      placeholder="검색어를 입력하세요"
+      placeholder="Please enter a search keyword."
       variant="outlined"
       size="small"
       fullWidth

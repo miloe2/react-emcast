@@ -3,6 +3,7 @@ import Navigation from "../components/Navigation";
 import PostListContainer from "../components/PostListContainer";
 import { useLocation } from "react-router-dom";
 import PostSearchResult from "../components/PostSearchResult";
+import WriteButton from "../components/WriteButton";
 
 function Home() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function Home() {
       ) : (
         <PostSearchResult keyword={keyword} />
       )}
+      <WriteButton />
     </>
   );
 }
