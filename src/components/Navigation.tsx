@@ -3,7 +3,8 @@ import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
-import MyDialog from "./MyDialog";
+import SignInModal from "./SignInModal";
+import BasicModal from "./BasicModal";
 import { useState } from "react";
 
 const glassStyle = {
@@ -37,18 +38,17 @@ export default function Navigation() {
             <Button sx={{ minWidth: 40, mr: 2 }} onClick={handleLogin}>
               <PersonIcon />
             </Button>
-            <MyDialog
-              open={open}
-              onClose={() => {
-                setOpen(false);
-              }}
-            />
           </Box>
           <Box sx={{ flexGrow: 1 }}>
             <SearchBar onSearch={(q) => handleSearch(q)} />
           </Box>
         </Toolbar>
       </Container>
+      {
+        <BasicModal open={open} onClose={() => setOpen(false)}>
+          <SignInModal onClose={() => setOpen(false)} />
+        </BasicModal>
+      }
     </AppBar>
   );
 }
