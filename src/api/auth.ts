@@ -3,7 +3,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { auth, db } from "../firebase.js";
+import { auth, db } from "../firebase";
 
 export async function login(email: string, password: string) {
   try {

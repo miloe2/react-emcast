@@ -1,12 +1,12 @@
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function LanguageToggle() {
   const { i18n } = useTranslation();
-  const [lang, setLang] = useState(i18n.language || 'en');
+  const [lang, setLang] = useState(i18n.language || "en");
 
-  const handleChange = (event: React.MouseEvent<HTMLElement>, newLang: string | null) => {
+  const handleChange = (_: unknown, newLang: string | null) => {
     if (newLang) {
       i18n.changeLanguage(newLang);
       setLang(newLang);
@@ -22,17 +22,17 @@ export default function LanguageToggle() {
       size="small"
       sx={{ height: 28 }}
     >
-      <ToggleButton 
-        value="en" 
-        aria-label="english" 
-        sx={{ px: 1.2, py: 0.3, fontSize: '0.75rem' }}
+      <ToggleButton
+        value="en"
+        aria-label="english"
+        sx={{ px: 1.2, py: 0.3, fontSize: "0.75rem" }}
       >
         EN
       </ToggleButton>
-      <ToggleButton 
-        value="ko" 
+      <ToggleButton
+        value="ko"
         aria-label="korean"
-        sx={{ px: 1.2, py: 0.3, fontSize: '0.75rem' }}
+        sx={{ px: 1.2, py: 0.3, fontSize: "0.75rem" }}
       >
         KO
       </ToggleButton>
