@@ -13,8 +13,10 @@ import {
 import { useForm } from "react-hook-form";
 import CustomInput from "../components/CustomInput";
 import { useNavigate } from "react-router-dom";
-import { signup } from "../api/auth";
+import { login, signup } from "../api/auth";
 import { useStore } from "../stores";
+import { setUserWithRole } from "../utils/setUserWithRole";
+import toast from "react-hot-toast";
 type FormValue = {
   email: string;
   password: string;
@@ -43,16 +45,34 @@ export default function Signup() {
     console.log("handleCancel");
     navigate(-1);
   };
+
   const handleConfirm = async (data: FormValue) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const rsp = await signup(data);
-      console.log("성공", rsp);
-      setLoading(false);
+      // 1. 회원가입
+      await signup(data);
+
+      // 2. 회원가입에 성공하면 바로 로그인
+      const rspLogin = await login(data.email, data.password);
+      console.log("성공", rspLogin);
+
+      // 3. role 등 권한 정보를 zustand에 저장
+      const memberInfo = {
+        uid: rspLogin.user.uid,
+        email: rspLogin.user.email,
+      };
+      await setUserWithRole(memberInfo);
+      toast.success(`Welcome ${memberInfo.email}!`);
+
+      // 4. 홈으로 이동
       navigate("/");
-      return rsp;
+
+      return rspLogin;
     } catch (error) {
-      console.log(error);
+      console.error("회원가입 or 로그인 실패:", error);
+      toast.error(`Please Check your account.`);
+    } finally {
+      setLoading(false);
     }
   };
 

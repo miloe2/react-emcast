@@ -4,7 +4,6 @@ import {
 } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase.js";
-import toast from "react-hot-toast";
 
 export async function login(email: string, password: string) {
   try {
@@ -14,7 +13,6 @@ export async function login(email: string, password: string) {
       password
     );
     console.log(userCredential);
-    toast.success(`Hello!! ${email}`)
     return userCredential;
   } catch (error) {
     console.error("로그인 실패:", error);
@@ -40,22 +38,14 @@ export async function signup({
 
     const user = userCredential.user;
 
-    // Firestore에 사용자 문서 생성
     await setDoc(doc(db, "users", user.uid), {
       email: user.email,
       role: role,
       createdAt: serverTimestamp(),
     });
-
-    console.log(userCredential);
-    toast.success(`Welcome ${email}!`)
     return userCredential;
   } catch (error) {
     console.error("로그인 실패:", error);
     throw error;
   }
 }
-
-// export async function signup(email: string, password: string) {
-//   return createUserWithEmailAndPassword(auth, email, password);
-// }

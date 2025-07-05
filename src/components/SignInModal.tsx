@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { login } from "../api/auth";
 import { useStore } from "../stores";
 import { setUserWithRole } from "../utils/setUserWithRole";
+import toast from "react-hot-toast";
 
 interface SignInModalProps {
   onClose: () => void;
@@ -21,16 +22,25 @@ export default function SignInModal({ onClose }: SignInModalProps) {
 
   const handleSignIn = async (data: FormValue) => {
     setLoading(true);
-    console.log("handleSignIn");
-    const rsp = await login(data.email, data.password);
-    console.log("성공", rsp);
-    const memberInfo = {
-      uid: rsp.user.uid,
-      email: rsp.user.email,
-    };
-    setUserWithRole(memberInfo);
-    setLoading(false);
-    onClose();
+    try {
+      console.log("handleSignIn");
+      const rsp = await login(data.email, data.password);
+      console.log("성공", rsp);
+
+      const memberInfo = {
+        uid: rsp.user.uid,
+        email: rsp.user.email,
+      };
+      await setUserWithRole(memberInfo);
+      toast.success(`Welcome ${memberInfo.email}!`);
+
+      onClose();
+    } catch (error) {
+      console.error("로그인 실패:", error);
+      toast.error(`Please Check your account.`);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSignUp = () => {

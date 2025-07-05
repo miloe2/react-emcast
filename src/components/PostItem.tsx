@@ -14,8 +14,7 @@ export default function PostItem({
   onClick,
 }: PostItemProps) {
   const { user } = useStore();
-  const canEdit =
-    user?.role === "admin" || user?.uid === post.userId.toString();
+
   const onDelete = (postId: number) => {
     console.log("delete", postId);
   };
@@ -37,7 +36,9 @@ export default function PostItem({
             >
               {post.title}
             </Typography>
-            {canEdit && <MoreMenu onDelete={() => onDelete(post.id)} />}
+            {user?.role === "admin" && (
+              <MoreMenu onDelete={() => onDelete(post.id)} />
+            )}
           </Box>
           <Typography
             variant="body2"
