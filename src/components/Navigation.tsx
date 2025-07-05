@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
+import LogoutIcon from '@mui/icons-material/Logout';
 import SignInModal from "./SignInModal";
 import BasicModal from "./BasicModal";
 import { useState } from "react";
@@ -36,6 +37,7 @@ export default function Navigation() {
               <HomeIcon />
             </Button>
             <Button sx={{ minWidth: 40, mr: 2 }} onClick={handleLogin}>
+              {/* <LogoutIcon /> */}
               <PersonIcon />
             </Button>
           </Box>
