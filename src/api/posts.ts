@@ -37,8 +37,8 @@ async function getPostDetail(id: number): Promise<Post> {
   return data;
 }
 
+// 게시물 추가
 async function createPost(body: PostDto) {
-  console.log("실행은되니");
   try {
     const { data } = await axiosInstance.post("/posts/add", {
       title: body.title,
@@ -52,4 +52,18 @@ async function createPost(body: PostDto) {
     throw error;
   }
 }
-export { getPosts, getPostSearch, getPostDetail, createPost };
+
+// 게시물 삭제
+async function deletePost(postId: number) {
+  try {
+    const { data } = await axiosInstance.delete(`posts/${postId}`);
+    console.log("응답:", data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+
+export { getPosts, getPostSearch, getPostDetail, createPost, deletePost };

@@ -2,6 +2,8 @@ import { Box, Stack, Card, CardContent, Typography, Chip } from "@mui/material";
 import type { Post } from "../types";
 import { MoreMenu } from "./MoreMenu";
 import { useStore } from "../stores";
+import { useDeletePost } from "../hooks/queries/useDeletePost";
+import toast from "react-hot-toast";
 
 interface PostItemProps {
   post: Post;
@@ -14,10 +16,22 @@ export default function PostItem({
   onClick,
 }: PostItemProps) {
   const { user } = useStore();
+  const deletePost = useDeletePost();
+  const setLoading = useStore((state) => state.setLoading);
 
-  const onDelete = (postId: number) => {
-    console.log("delete", postId);
+  const onDelete = async (postId: number) => {
+    setLoading(true);
+    try {
+      await deletePost.mutateAsync(postId);
+      toast.success("Post deleted!");
+    } catch (e) {
+      console.error("삭제 실패:", e);
+      toast.error("Delete failed!");
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <Card sx={{ mb: 2, px: 2 }}>
       <CardContent>
