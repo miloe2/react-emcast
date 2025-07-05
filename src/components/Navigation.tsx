@@ -9,13 +9,12 @@ import BasicModal from "./BasicModal";
 import { useState } from "react";
 import { useStore } from "../stores";
 import toast from "react-hot-toast";
-// import { useTranslation } from "react-i18next";
 import LanguageToggle from "./LanguageToggle";
 
 const glassStyle = {
   backdropFilter: "blur(12px)",
-  WebkitBackdropFilter: "blur(12px)", // Safari 지원
-  backgroundColor: "rgba(255, 255, 255, 0.6)", // 밝은 유리 느낌
+  WebkitBackdropFilter: "blur(12px)",
+  backgroundColor: "rgba(255, 255, 255, 0.6)",
   border: "1px solid rgba(255, 255, 255, 0.3)",
   borderRadius: "16px",
   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
@@ -38,7 +37,6 @@ export default function Navigation() {
     toast.success("Logout! See you!");
     console.log("logout");
   };
-  // const { i18n } = useTranslation();
 
   return (
     <AppBar position="fixed" color="default" elevation={1} style={glassStyle}>
