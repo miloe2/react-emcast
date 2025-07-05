@@ -1,16 +1,17 @@
 import "./App.css";
-import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Container } from "@mui/material";
+import { Toaster } from "react-hot-toast";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { Container } from "@mui/material";
+import Home from "./pages/Home";
 import queryClient from "./api/queryClient";
 import PostDetail from "./pages/PostDetail";
 import Signup from "./pages/Signup";
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <Toaster position="top-right" />
         <Container maxWidth="sm">
           <Routes>
             <Route path="/" element={<Home />} />
