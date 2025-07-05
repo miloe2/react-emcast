@@ -1,12 +1,14 @@
-import { AppBar, Toolbar, Box, Container, Button, Tooltip, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Box, Container, Button } from "@mui/material";
 import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 import SignInModal from "./SignInModal";
 import BasicModal from "./BasicModal";
 import { useState } from "react";
+import { useStore } from "../stores";
+import toast from "react-hot-toast";
 
 const glassStyle = {
   backdropFilter: "blur(12px)",
@@ -20,6 +22,7 @@ const glassStyle = {
 export default function Navigation() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const { user, clearUser } = useStore();
   const handleLogin = () => {
     setOpen(true);
   };
@@ -28,7 +31,11 @@ export default function Navigation() {
     navigate(`/?search=${encodeURIComponent(q)}`);
   };
 
-  const handleLogout = () => {}
+  const handleLogout = () => {
+    clearUser();
+    toast.success("Logout! See you!");
+    console.log("logout");
+  };
 
   return (
     <AppBar position="fixed" color="default" elevation={1} style={glassStyle}>
@@ -38,9 +45,11 @@ export default function Navigation() {
             <Button sx={{ minWidth: 40, mr: 2 }} onClick={() => navigate("/")}>
               <HomeIcon />
             </Button>
-            <Button sx={{ minWidth: 40, mr: 2 }} onClick={handleLogin}>
-              {/* <LogoutIcon /> */}
-              <PersonIcon />
+            <Button
+              sx={{ minWidth: 40, mr: 2 }}
+              onClick={user ? handleLogout : handleLogin}
+            >
+              {user ? <LogoutIcon /> : <PersonIcon />}
             </Button>
           </Box>
           <Box sx={{ flexGrow: 1 }}>

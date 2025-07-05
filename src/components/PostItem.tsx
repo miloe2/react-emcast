@@ -1,6 +1,7 @@
 import { Box, Stack, Card, CardContent, Typography, Chip } from "@mui/material";
 import type { Post } from "../types";
 import { MoreMenu } from "./MoreMenu";
+import { useStore } from "../stores";
 
 interface PostItemProps {
   post: Post;
@@ -12,6 +13,9 @@ export default function PostItem({
   isDetail = false,
   onClick,
 }: PostItemProps) {
+  const { user } = useStore();
+  const canEdit =
+    user?.role === "admin" || user?.uid === post.userId.toString();
   const onDelete = (postId: number) => {
     console.log("delete", postId);
   };
@@ -33,7 +37,7 @@ export default function PostItem({
             >
               {post.title}
             </Typography>
-            <MoreMenu onDelete={() => onDelete(post.id)} />
+            {canEdit && <MoreMenu onDelete={() => onDelete(post.id)} />}
           </Box>
           <Typography
             variant="body2"
