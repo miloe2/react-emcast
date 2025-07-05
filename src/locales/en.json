@@ -1,0 +1,20 @@
+{ 
+  "inputPlaceholder": "Please enter a search keyword.",
+  "Login" : "LOGIN",
+  "SignIn" : "SIGN IN",
+  "SignUp" : "SIGN UP",
+  "E-mail" :  "E-mail",
+  "Password" : "Password",
+  "PasswordConfirm" : "Password Confirm",
+  "Role" : "ROLE",
+  "Admin" : "ADMIN",
+  "User" : "USER",
+  "Guest" : "GUEST",
+  "Cancel" : "CANCEL",
+  "Confirm" : "CONFIRM",
+  "TitleError" : "Please enter a title.",
+  "ContentError" : "Please enter a Content.",
+  "PasswordError" : "Please check password again.",
+  "AccountError" : "Please Check your account.",
+  "Welcome" : "환영합니다"
+ }

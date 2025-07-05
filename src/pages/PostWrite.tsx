@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useCreatePost } from "../hooks/queries/useCreatePost";
 import { useStore } from "../stores";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 type FormValue = {
   title: string;
   body: string;
@@ -44,6 +45,8 @@ export default function PostWrite() {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <form onSubmit={handleSubmit(handleConfirm)}>
       <Container
@@ -68,7 +71,7 @@ export default function PostWrite() {
             <CustomInput
               label="Title"
               register={register("title", {
-                required: "	Please enter a title.",
+                required: t("TitleError"),
               })}
             />
             {errors.title && (
@@ -82,7 +85,7 @@ export default function PostWrite() {
               multiline
               rows={6}
               register={register("body", {
-                required: "Please enter content.",
+                required: t("ContentError"),
                 validate: (value) =>
                   value.trim() !== "" || "Input cannot be only whitespace.",
               })}

@@ -17,6 +17,7 @@ import { login, signup } from "../api/auth";
 import { useStore } from "../stores";
 import { setUserWithRole } from "../utils/setUserWithRole";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 type FormValue = {
   email: string;
   password: string;
@@ -45,6 +46,7 @@ export default function Signup() {
     console.log("handleCancel");
     navigate(-1);
   };
+  const { t } = useTranslation();
 
   const handleConfirm = async (data: FormValue) => {
     setLoading(true);
@@ -70,7 +72,7 @@ export default function Signup() {
       return rspLogin;
     } catch (error) {
       console.error("회원가입 or 로그인 실패:", error);
-      toast.error(`Please Check your account.`);
+      toast.error(t("AccountError"));
     } finally {
       setLoading(false);
     }
@@ -96,23 +98,22 @@ export default function Signup() {
             variant="h4"
             gutterBottom
           >
-            SIGN UP
+            {t("SignUp")}
           </Typography>
 
           <Stack spacing={2}>
-            <CustomInput label="E-mail" register={register("email")} />
+            <CustomInput label={t("E-mail")} register={register("email")} />
             <CustomInput
-              label="Password"
+              label={t("Password")}
               type="password"
               register={register("password")}
             />
             <CustomInput
-              label="Password Confirm"
+              label={t("PasswordConfirm")}
               type="password"
               register={register("passwordConfirm", {
-                required: "Please check password again.",
-                validate: (value) =>
-                  value === password || "Please check password again.",
+                required: t("PasswordError"),
+                validate: (value) => value === password || t("PasswordError"),
               })}
             />
             {errors.passwordConfirm && (
@@ -167,10 +168,10 @@ export default function Signup() {
 
           <Stack direction={"row"} spacing={1} sx={{ mt: 6 }}>
             <Button variant="outlined" fullWidth onClick={handleCancel}>
-              Cancel
+              {t("Cancel")}
             </Button>
             <Button variant="contained" fullWidth type="submit">
-              Confirm
+              {t("Confirm")}
             </Button>
           </Stack>
         </Box>

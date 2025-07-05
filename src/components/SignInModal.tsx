@@ -6,6 +6,7 @@ import { login } from "../api/auth";
 import { useStore } from "../stores";
 import { setUserWithRole } from "../utils/setUserWithRole";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 interface SignInModalProps {
   onClose: () => void;
@@ -19,11 +20,11 @@ export default function SignInModal({ onClose }: SignInModalProps) {
   const { register, handleSubmit } = useForm<FormValue>();
   const setLoading = useStore((state) => state.setLoading);
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const handleSignIn = async (data: FormValue) => {
     setLoading(true);
     try {
-      console.log("handleSignIn");
+      // console.log("handleSignIn");
       const rsp = await login(data.email, data.password);
       console.log("성공", rsp);
 
@@ -32,12 +33,12 @@ export default function SignInModal({ onClose }: SignInModalProps) {
         email: rsp.user.email,
       };
       await setUserWithRole(memberInfo);
-      toast.success(`Welcome ${memberInfo.email}!`);
+      toast.success(`${t("Welcome")} ${memberInfo.email}!`);
 
       onClose();
     } catch (error) {
       console.error("로그인 실패:", error);
-      toast.error(`Please Check your account.`);
+      toast.error(t("AccountError"));
     } finally {
       setLoading(false);
     }
@@ -45,7 +46,7 @@ export default function SignInModal({ onClose }: SignInModalProps) {
 
   const handleSignUp = () => {
     onClose();
-    console.log("handleSignUp");
+    // console.log("handleSignUp");
     navigate("/signup");
   };
 
@@ -58,7 +59,7 @@ export default function SignInModal({ onClose }: SignInModalProps) {
           variant="h4"
           gutterBottom
         >
-          LOGIN
+          {t("Login")}
         </Typography>
 
         <Stack spacing={2}>
@@ -71,10 +72,10 @@ export default function SignInModal({ onClose }: SignInModalProps) {
         </Stack>
         <Stack spacing={1} sx={{ mt: 4 }}>
           <Button variant="contained" fullWidth type="submit">
-            Sign In
+            {t("SignIn")}
           </Button>
           <Button variant="outlined" fullWidth onClick={handleSignUp}>
-            Sign Up
+            {t("SignUp")}
           </Button>
         </Stack>
       </form>

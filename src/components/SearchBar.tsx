@@ -1,14 +1,14 @@
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-
+import { useTranslation } from "react-i18next";
 export default function SearchBar({
   onSearch,
 }: {
   onSearch: (q: string) => void;
 }) {
   const [keyword, setKeyword] = useState("");
-
+  const { t } = useTranslation();
   return (
     <TextField
       value={keyword}
@@ -16,7 +16,7 @@ export default function SearchBar({
       onKeyDown={(e) => {
         if (e.key === "Enter") onSearch(keyword.trim());
       }}
-      placeholder="Please enter a search keyword."
+      placeholder={t("inputPlaceholder")}
       variant="outlined"
       size="small"
       fullWidth
