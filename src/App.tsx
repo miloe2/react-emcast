@@ -8,11 +8,13 @@ import queryClient from "./api/queryClient";
 import PostDetail from "./pages/PostDetail";
 import PostWrite from "./pages/PostWrite";
 import Signup from "./pages/Signup";
+import LoadingOverlay from "./components/LoadingOverlay";
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Toaster position="top-right" />
+        <LoadingOverlay />
         <Container maxWidth="sm">
           <Routes>
             <Route path="/" element={<Home />} />

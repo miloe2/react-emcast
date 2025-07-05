@@ -13,8 +13,10 @@ import {
 import { useForm } from "react-hook-form";
 import CustomInput from "../components/CustomInput";
 import { useNavigate } from "react-router-dom";
+import { signup } from "../api/auth";
+import { useStore } from "../stores";
 type FormValue = {
-  userId: string;
+  email: string;
   password: string;
   passwordConfirm: string;
   role: string;
@@ -28,7 +30,7 @@ export default function Signup() {
     formState: { errors },
   } = useForm<FormValue>({
     defaultValues: {
-      userId: "",
+      email: "",
       password: "",
       passwordConfirm: "",
       role: "admin",
@@ -36,13 +38,22 @@ export default function Signup() {
   });
 
   const navigate = useNavigate();
+  const setLoading = useStore((state) => state.setLoading);
   const handleCancel = () => {
     console.log("handleCancel");
     navigate(-1);
   };
-  const handleConfirm = (data: FormValue) => {
-    console.log("handleConfirm");
-    console.log("data", data);
+  const handleConfirm = async (data: FormValue) => {
+    try {
+      setLoading(true);
+      const rsp = await signup(data);
+      console.log("성공", rsp);
+      setLoading(false);
+      navigate("/");
+      return rsp;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const password = watch("password");
@@ -69,7 +80,7 @@ export default function Signup() {
           </Typography>
 
           <Stack spacing={2}>
-            <CustomInput label="ID" register={register("userId")} />
+            <CustomInput label="E-mail" register={register("email")} />
             <CustomInput
               label="Password"
               type="password"
@@ -79,9 +90,9 @@ export default function Signup() {
               label="Password Confirm"
               type="password"
               register={register("passwordConfirm", {
-                required: "비밀번호 확인을 입력하세요.",
+                required: "Please check password again.",
                 validate: (value) =>
-                  value === password || "비밀번호가 일치하지 않습니다.",
+                  value === password || "Please check password again.",
               })}
             />
             {errors.passwordConfirm && (
