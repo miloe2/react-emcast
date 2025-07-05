@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Box, Container, Button } from "@mui/material";
+import { AppBar, Toolbar, Box, Container, Button, Tooltip, IconButton } from "@mui/material";
 import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
@@ -27,6 +27,8 @@ export default function Navigation() {
   const handleSearch = (q: string) => {
     navigate(`/?search=${encodeURIComponent(q)}`);
   };
+
+  const handleLogout = () => {}
 
   return (
     <AppBar position="fixed" color="default" elevation={1} style={glassStyle}>

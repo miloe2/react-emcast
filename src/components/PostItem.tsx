@@ -1,5 +1,7 @@
 import { Box, Stack, Card, CardContent, Typography, Chip } from "@mui/material";
 import type { Post } from "../types";
+import { MoreMenu } from "./MoreMenu";
+
 interface PostItemProps {
   post: Post;
   isDetail?: boolean;
@@ -10,6 +12,9 @@ export default function PostItem({
   isDetail = false,
   onClick,
 }: PostItemProps) {
+  const onDelete = (postId: number) => {
+    console.log("delete", postId);
+  };
   return (
     <Card sx={{ mb: 2, px: 2 }}>
       <CardContent>
@@ -17,9 +22,19 @@ export default function PostItem({
           onClick={!isDetail ? onClick : undefined}
           sx={!isDetail ? { cursor: "pointer" } : undefined}
         >
-          <Typography variant="h6" gutterBottom>
-            {post.title}
-          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="h6"
+              sx={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {post.title}
+            </Typography>
+            <MoreMenu onDelete={() => onDelete(post.id)} />
+          </Box>
           <Typography
             variant="body2"
             color="text.secondary"
