@@ -61,7 +61,7 @@ export default function PostItem({
         </Box>
 
         <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-          {post.tags.map((tag, idx) => (
+          {post.tags?.map((tag, idx) => (
             <Chip key={idx} label={`# ${tag}`} size="small" />
           ))}
         </Stack>

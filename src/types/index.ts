@@ -9,6 +9,14 @@ interface Post {
   };
   views: number;
   userId: number;
+  uid?: string;
+}
+
+interface PostDto {
+  title: string;
+  body: string;
+  userId: number;
+  uid?: string; // 우리 앱용 (필요하면)
 }
 
 interface PostsResponse {
@@ -32,7 +40,6 @@ interface Comments {
   user: User;
 }
 
-
 interface CommentsResponse {
   comments: Comments[];
   total: number;
@@ -40,4 +47,4 @@ interface CommentsResponse {
   limit: number;
 }
 
-export type { Post, PostsResponse, Comments, CommentsResponse };
+export type { Post, PostDto, PostsResponse, Comments, CommentsResponse };

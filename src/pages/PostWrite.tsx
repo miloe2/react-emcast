@@ -2,6 +2,9 @@ import { Box, Stack, Button, Typography, Container } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CustomInput from "../components/CustomInput";
 import { useNavigate } from "react-router-dom";
+import { useCreatePost } from "../hooks/queries/useCreatePost";
+import { useStore } from "../stores";
+import toast from "react-hot-toast";
 type FormValue = {
   title: string;
   body: string;
@@ -18,14 +21,27 @@ export default function PostWrite() {
     },
   });
 
+  const createPost = useCreatePost();
+  const { user } = useStore();
+  const setLoading = useStore((state) => state.setLoading);
+
   const navigate = useNavigate();
   const handleCancel = () => {
     console.log("handleCancel");
     navigate(-1);
   };
-  const handleConfirm = (data: FormValue) => {
-    console.log("write");
-    console.log("data", data);
+
+  const handleConfirm = async (data: FormValue) => {
+    setLoading(true);
+    try {
+      await createPost.mutateAsync({ ...data, userId: 10, uid: user?.uid }); // userId는 uid를 위해 강제로 넣음
+      toast.success("Success upload!");
+      navigate("/");
+    } catch (e) {
+      console.error("에러:", e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

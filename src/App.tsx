@@ -9,6 +9,8 @@ import PostDetail from "./pages/PostDetail";
 import PostWrite from "./pages/PostWrite";
 import Signup from "./pages/Signup";
 import LoadingOverlay from "./components/LoadingOverlay";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -24,6 +26,7 @@ function App() {
           </Routes>
         </Container>
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
   );
 }
