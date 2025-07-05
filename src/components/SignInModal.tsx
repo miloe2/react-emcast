@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { login } from "../api/auth";
 import { useStore } from "../stores";
+import { setUserWithRole } from "../utils/setUserWithRole";
 
 interface SignInModalProps {
   onClose: () => void;
@@ -23,6 +24,11 @@ export default function SignInModal({ onClose }: SignInModalProps) {
     console.log("handleSignIn");
     const rsp = await login(data.email, data.password);
     console.log("성공", rsp);
+    const memberInfo = {
+      uid: rsp.user.uid,
+      email: rsp.user.email,
+    };
+    setUserWithRole(memberInfo);
     setLoading(false);
     onClose();
   };
