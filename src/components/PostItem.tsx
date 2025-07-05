@@ -4,6 +4,7 @@ import { MoreMenu } from "./MoreMenu";
 import { useStore } from "../stores";
 import { useDeletePost } from "../hooks/queries/useDeletePost";
 import toast from "react-hot-toast";
+import { throttle } from "lodash";
 
 interface PostItemProps {
   post: Post;
@@ -18,12 +19,12 @@ export default function PostItem({
   const { user } = useStore();
   const deletePost = useDeletePost();
   const setLoading = useStore((state) => state.setLoading);
-
+  const showErrorToast = throttle((msg) => toast.success(msg), 2000);
   const onDelete = async (postId: number) => {
     setLoading(true);
     try {
       await deletePost.mutateAsync(postId);
-      toast.success("Post deleted!");
+      showErrorToast("Post deleted!");
     } catch (e) {
       console.error("삭제 실패:", e);
       toast.error("Delete failed!");

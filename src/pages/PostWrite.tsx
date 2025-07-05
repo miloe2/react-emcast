@@ -64,12 +64,12 @@ export default function PostWrite() {
             variant="h4"
             gutterBottom
           >
-            WRITE YOUR POST!
+            {t("Write")}
           </Typography>
 
           <Stack spacing={2}>
             <CustomInput
-              label="Title"
+              label={t("Title")}
               register={register("title", {
                 required: t("TitleError"),
               })}
@@ -81,13 +81,12 @@ export default function PostWrite() {
             )}
 
             <CustomInput
-              label="Content"
+              label={t("Content")}
               multiline
               rows={6}
               register={register("body", {
                 required: t("ContentError"),
-                validate: (value) =>
-                  value.trim() !== "" || "Input cannot be only whitespace.",
+                validate: (value) => value.trim() !== "" || t("ContentError"),
               })}
             />
 
@@ -100,10 +99,10 @@ export default function PostWrite() {
 
           <Stack direction={"row"} spacing={1} sx={{ mt: 6 }}>
             <Button variant="outlined" fullWidth onClick={handleCancel}>
-              Cancel
+              {t("Cancel")}
             </Button>
             <Button variant="contained" fullWidth type="submit">
-              Confirm
+              {t("Confirm")}
             </Button>
           </Stack>
         </Box>
