@@ -6,6 +6,7 @@ import PostSearchResult from "../components/PostSearchResult";
 import WriteButton from "../components/WriteButton";
 import { useStore } from "../stores";
 
+
 function Home() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -15,6 +16,7 @@ function Home() {
   return (
     <>
       <Navigation />
+
       <Toolbar sx={{ marginBottom: 6 }} />
       {!keyword ? (
         <PostListContainer />

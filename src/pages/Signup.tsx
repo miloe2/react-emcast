@@ -125,7 +125,7 @@ export default function Signup() {
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label">
                 <Typography variant="body2" color="primary">
-                  ROLE
+                  {t("Role")}
                 </Typography>
               </FormLabel>
               <RadioGroup
@@ -138,7 +138,7 @@ export default function Signup() {
                 <FormControlLabel
                   value="admin"
                   control={<Radio size="small" />}
-                  label="ADMIN"
+                  label={t("Admin")}
                   sx={{
                     "& .MuiFormControlLabel-label": { fontSize: "0.8rem" },
                     mr: 2,
@@ -147,7 +147,7 @@ export default function Signup() {
                 <FormControlLabel
                   value="user"
                   control={<Radio size="small" />}
-                  label="USER"
+                  label={t("User")}
                   sx={{
                     "& .MuiFormControlLabel-label": { fontSize: "0.8rem" },
                     mr: 2,
@@ -156,7 +156,7 @@ export default function Signup() {
                 <FormControlLabel
                   value="guest"
                   control={<Radio size="small" />}
-                  label="GUEST"
+                  label={t("Guest")}
                   sx={{
                     "& .MuiFormControlLabel-label": { fontSize: "0.8rem" },
                     mr: 2,

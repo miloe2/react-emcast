@@ -9,6 +9,8 @@ import BasicModal from "./BasicModal";
 import { useState } from "react";
 import { useStore } from "../stores";
 import toast from "react-hot-toast";
+// import { useTranslation } from "react-i18next";
+import LanguageToggle from "./LanguageToggle";
 
 const glassStyle = {
   backdropFilter: "blur(12px)",
@@ -36,13 +38,17 @@ export default function Navigation() {
     toast.success("Logout! See you!");
     console.log("logout");
   };
+  // const { i18n } = useTranslation();
 
   return (
     <AppBar position="fixed" color="default" elevation={1} style={glassStyle}>
       <Container maxWidth="sm" sx={{ backgroundColor: "" }}>
         <Toolbar disableGutters sx={{ py: 1 }}>
+          <Toolbar>
+            <LanguageToggle />
+          </Toolbar>
           <Box>
-            <Button sx={{ minWidth: 40, mr: 2 }} onClick={() => navigate("/")}>
+            <Button sx={{ minWidth: 40, mr: 0 }} onClick={() => navigate("/")}>
               <HomeIcon />
             </Button>
             <Button

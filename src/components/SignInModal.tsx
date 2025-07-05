@@ -63,9 +63,9 @@ export default function SignInModal({ onClose }: SignInModalProps) {
         </Typography>
 
         <Stack spacing={2}>
-          <CustomInput label="E-mail" register={register("email")} />
+          <CustomInput label={t("E-mail")} register={register("email")} />
           <CustomInput
-            label="Password"
+            label={t("Password")}
             type="password"
             register={register("password")}
           />

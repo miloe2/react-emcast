@@ -1,0 +1,20 @@
+{
+  "inputPlaceholder": "검색어를 입력하세요.",
+  "Login": "로그인",
+  "SignIn": "로그인",
+  "SignUp": "회원가입",
+  "E-mail": "이메일",
+  "Password": "비밀번호",
+  "PasswordConfirm": "비밀번호 확인",
+  "Role": "권한",
+  "Admin": "관리자",
+  "User": "사용자",
+  "Guest": "게스트",
+  "Cancel": "취소",
+  "Confirm": "확인",
+  "TitleError": "제목을 입력해주세요.",
+  "ContentError": "내용을 입력해주세요.",
+  "PasswordError": "비밀번호를 다시 확인해주세요.",
+  "AccountError": "계정을 다시 확인해주세요.",
+  "Welcome": "환영합니다"
+}
