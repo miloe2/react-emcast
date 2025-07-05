@@ -13,14 +13,20 @@ export default function LoginCard() {
       }}
     >
       <Card sx={{ p: 2, maxWidth: 400, width: "100%" }}>
-        <Typography variant="h6" gutterBottom>
-          Login
+        <Typography
+          sx={{ mb: 4, fontWeight: "bold" }}
+          align="center"
+          variant="h4"
+          gutterBottom
+        >
+          LOGIN
         </Typography>
 
         <Stack spacing={2}>
-          <CustomInput />
-          <CustomInput />
-
+          <CustomInput label="ID" />
+          <CustomInput label="Password" />
+        </Stack>
+        <Stack spacing={1} sx={{ mt: 4 }}>
           <Button variant="contained" fullWidth>
             Sign In
           </Button>

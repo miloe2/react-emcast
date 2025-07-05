@@ -33,13 +33,17 @@ export default function PostListContainer() {
     <>
       <PostList posts={allPosts} onClick={handleClickPost} />
 
-      <Box ref={loadMoreRef} sx={{ minHeight: 100, marginTop: 10 }}>
-        {hasNextPage ? (
+      <Box
+        ref={loadMoreRef}
+        sx={{
+          minHeight: 100,
+          marginTop: 10,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {hasNextPage && (
           <CircularProgress size={40} color="info" thickness={5} />
-        ) : (
-          <p style={{ textAlign: "center", color: "#888" }}>
-            더 이상 게시물이 없습니다.
-          </p>
         )}
       </Box>
     </>

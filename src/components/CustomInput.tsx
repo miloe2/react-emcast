@@ -1,13 +1,12 @@
-import { TextField, Box } from '@mui/material';
+import { TextField, Box } from "@mui/material";
 
-export default function CustomInput() {
+interface CustomInputProps {
+  label: string;
+}
+export default function CustomInput({ label }: CustomInputProps) {
   return (
     <Box sx={{ mt: 2 }}>
-      <TextField
-        label="Your input"
-        variant="outlined"
-        fullWidth
-      />
+      <TextField label={label} fullWidth />
     </Box>
   );
 }
